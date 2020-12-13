@@ -1,0 +1,11 @@
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+
+recherchePatients:
+    path: /recherchePatients
+    controller: App\Controller\RecherchePatientsController::index
+
+gererRatients:
+    path: /gererPatients
+    controller: App\Controller\GererPatientsController::index

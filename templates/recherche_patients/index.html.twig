@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+    <title>Application Hôpital</title>
+</head>
+<body>
+    <style>
+        body{
+
+            background-color: var(--grey);
+        }
+        :root{
+            --grey:#E0E1DD;
+            --dark_blue:#1B263B;
+            --light_blue:#778dae;
+        }
+        .image{
+            height:10vw;
+            width:100%;
+            background-attachment:fixed;
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-image: url("https://lvdneng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2020/04/24/node_764090/47356788/public/2020/04/24/B9723299169Z.1_20200424155740_000%2BG8GFU2BTF.1-0.jpg?itok=x1DwPsea1591893613");
+        }
+        .contain{
+            margin-top:2vw;
+            display:flex;
+            width:70vw;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            flex-direction: column;
+        }
+        /* -----TOP----- */
+        .top_contain{
+            display: flex;
+            justify-content: space-between;
+            width:100%;
+        }
+        .top_left{
+            font-size: 30px;
+        }
+        .top_right{
+            font-size: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+        .search{
+            display: flex;
+            flex-direction: row;
+        }
+        /* -----PATIENT----- */
+        .list_patients{
+            margin-top:2vw;
+            display: flex;
+            flex-direction: column;
+        }
+        .patient{
+            background-color:white;
+            height:20vh;
+            width:50vw;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-around;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .patient_infos{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-right: 5vw;
+        }
+        .patientInfos{
+            display: flex;
+            flex-direction: row;
+        }
+        p{
+            margin-left: 0.5vw;
+        }
+        .split{
+            height:15vh;
+            width:0;
+            border-left: 1px solid black;
+            margin-right: 1vw;
+        }
+        .btn{
+            margin-left:0.5vw;
+        }
+    </style>
+    {% include 'template/header.html.twig' %}
+        <div class="image"></div>
+        <div class="contain">
+            <div class="top_contain">
+                <span class="top_left">Liste des patients</span>
+                <span class="top_right">
+                    <label for="search">
+                        Rechercher:
+                        <div class="search">
+                            <input type="text" class="form-control" placeholder="Rechercher">
+                            <input type="button" class="btn btn-primary" value="Search">
+                        </div>
+                    </label>
+                </span>
+            </div>
+            <div class="list_patients">
+                {% for i in 0..10 %}
+                <div class="patient shadow p-3 mb-5 bg-white rounded">
+                    <div class="patient_left patient_infos">
+                        <div class="patientInfos">
+                            <span class="preLastName">Nom:</span>
+                            <p class="lastName">Jean</p>
+                        </div>
+                        <div class="patientInfos">
+                            <span class="preFirstName">Prenom:</span>
+                            <p class="firstName">Moulin</p>
+                        </div>
+                        <div class="patientInfos">
+                            <span class="preAge">Age:</span>
+                            <p class="age">69</p>
+                        </div>
+                    </div>
+                    <div class="split"></div>
+                    <div class="patient_center patient_infos">
+                        <div class="patientInfos">
+                            <span class="preService">Service:</span>
+                            <p class="lastService">Cardio</p>
+                        </div>
+                        <div class="patientInfos">
+                            <span class="preRoomNumber">Numéro de chambre:</span>
+                            <p class="roomNumber">12</p>
+                        </div>
+                        <div class="modifyPatient">
+                            <input type="button" class="modifyButton btn btn-primary" value="Modifier">
+                        </div>
+                    </div>
+                    <div class="split"></div>
+                    <div class="patient_right patient_infos">
+                        <div class="patientInfos">
+                            <span class="preDateEntrée">Date d'entrée:</span>
+                            <p class="dateEntrée">28/10/2019</p>
+                        </div>
+                        <div class="patientInfos">
+                            <span class="preDateSortie">Date de sortie:</span>
+                            <p class="dateSortie">13/05/2020</p>
+                        </div>
+                        <div class="deletePatient">
+                            <input type="button" class="deleteButton btn btn-primary" value="Supprimer">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>
+
+

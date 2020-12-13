@@ -1,0 +1,10 @@
+:root{
+    --grey:#E0E1DD;
+}
+
+body{
+    background-color: var(--grey);
+}
+.example-wrapper{
+    background-color: red;
+}
