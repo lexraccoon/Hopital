@@ -1,0 +1,43 @@
+login:
+    path: /
+    controller: App\Controller\LoginController::login
+
+app_logout:
+    path: /logout
+    methods: GET
+
+listePatients:
+    path: /listePatients
+    controller: App\Controller\ListePatientsController::index
+
+modifierPatients:
+    path: /modifierPatients/{id}
+    controller: App\Controller\ModifierPatientsController::index
+
+ajouterPatients:
+    path: /ajouterPatients
+    controller: App\Controller\AjouterPatientsController::index
+
+listeSejourPatients:
+    path: /listeSejourPatients/{id}
+    controller: App\Controller\ListeSejourPatientsController::index
+
+modifierSejour:
+    path: /modifierSejour/{idsejour}/{id}
+    controller: App\Controller\ModifierSejourController::index
+
+ajouterSejours:
+    path: /ajouterSejours/{id}
+    controller: App\Controller\AjouterSejoursController::index
+
+listeUtilisateurs:
+    path: /listeUtilisateurs
+    controller: App\Controller\ListeUtilisateursController::index
+
+modifierUtilisateur:
+    path: /modifierUtilisateur
+    controller: App\Controller\ModifierUtilisateurController::index
+
+ajouterUtilisateurs:
+    path: /ajouterUtilisateurs
+    controller: App\Controller\AjouterUtilisateursController::index
