@@ -1,0 +1,110 @@
+{% if gradeUser == 'Secretaire' or gradeUser == 'Patient' %}
+    <!DOCTYPE html>
+    <html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="style.css" rel="stylesheet"/>
+        <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
+        <title>Application Hôpital</title>
+    </head>
+
+    {% block body %}
+    {% include 'template/header.html.twig' %}
+
+        {% if rdvs %}
+
+            <div class="image"></div>
+            <div class="contain">
+                <div class="top_contain">
+                    <span class="top_left">
+                    {% if gradeUser == 'Secretaire' %}
+                        <p>Liste des rendez-vous</p>
+                    {% else %}
+                        <p>Liste de vos rendez-vous</p>
+                    {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            {% for rdv in rdvs %}
+
+                <div class="list_rdvs">
+                    <div class="rdvs shadow mb-5 bg-white rounded">
+                        <div class="rdvsContain">
+                            <div class="rdvsTop">
+                                <div class="rdvsTopLeft">📅{{rdv.DateRdv|date("d/m/Y")}}</div>
+                                <div class="rdvsTopRight">🕔{{rdv.HeureRdv|date("H:i")}}</div>
+                            </div>
+                            <div class="rvdsContent">
+                                <div class="rdvsLeft">
+                                    <img class="img" src="docteur.jpg" alt="medecin">
+                                </div>
+                                <div class="split"></div>
+                                <div class="rdvsRight">
+                                    <div class="rdvsInfos">
+                                        <span class="preDateEntree">Prénom : </span>
+                                        <p class="dateEntree"> &nbsp {{ rdv.PrenomMedecin }}</p>
+                                    </div>
+                                    <div class="rdvsInfos">
+                                        <span class="preDateEntree">Nom : </span>
+                                        <p class="dateEntree">&nbsp {{ rdv.NomMedecin }}</p>
+                                    </div>
+                                    <div class="rdvsInfos">
+
+                                        {% if gradeUser == 'Secretaire' %}
+
+                                            <a href="/confirmation/Validé/{{ rdv.id }}"><input type="button" class="buttonBack btn btn-dark" value="Valider"></a>
+                                            <a href="/confirmation/Refusé/{{ rdv.id }}"><input type="button" class="buttonBack btn btn-dark" value="Refuser"></a>
+
+                                        {% else %}
+
+                                            <span>Statut : {{ rdv.etatRdv }}</span>
+
+                                            {% if rdv.etatRdv == 'Demandé' or rdv.etatRdv == 'Validé' %}
+
+                                                <a href="/confirmation/Annulé/{{ rdv.id }}"><input type="button" class="buttonBack btn btn-dark" value="Annuler"></a>
+
+                                            {% endif %}
+
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="image"></div>
+
+            {% if gradeUser == 'Secretaire' %}
+
+                <div class="noRdvs">
+                    <p>Aucun rendez-vous en attente.</p>
+                </div>
+
+            {% else %}
+
+                <div class="noRdvs">
+                    <p> Vous n'avez aucuns rendez-vous : </p>
+                    <a href="/prendreRdv"><input type="button" class="buttonBack btn btn-dark" value="Prendre un rendez-vous"></a>
+                </div>
+
+            {% endif %}
+
+        {% endif %}
+
+
+    {% endblock %}
+{% elseif gradeUser == 'Administrateur' %}
+    <script>window.location.href = "/listePatients"</script>
+{% else %}
+    <script>window.location.href = "/welcome"</script>
+{% endif %}

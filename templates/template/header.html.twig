@@ -11,22 +11,33 @@
         margin-left:2vw;
     }
 </style>
+
 <nav class="navbar navbar-expand-lg navbar navbar-dark">
     <span>
         {% if app.user %}
-            <img src="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png">
-            <a class="navbar-brand" href="/listePatients">Liste des patients</a>
+            {% if gradeUser %}
+                <img src="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png"/>
                 {% if gradeUser == 'Administrateur' %}
+                    <a class="navbar-brand" href="/listePatients">Liste des patients</a>
                     <a class="navbar-brand" href="/listeUtilisateurs">Liste des utilisateurs</a>
+                {% elseif gradeUser == 'Patient' %}
+                    <a class="navbar-brand" href="/listeRdv">Vos rendez-vous</a>
+                    <a class="navbar-brand" href="/prendreRdv">Prendre un rendez-vous</a>
+                {% elseif gradeUser == 'Secretaire' %}
+                    <a class="navbar-brand" href="/listePatients">Liste des patients</a>
+                    <a class="navbar-brand" href="/listeRdv">Rendez-vous</a>
                 {% endif %}
+            {% else %}
+                <script>window.location.href = "/userNotLogout"</script>
+            {% endif %}
         {% else %}
-            <img src="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png">
+            <img src="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png"/>
         {% endif %}
     </span>
     <span>
         {% if app.user %}
             <a class="navbar-brand" href="/logout">Déconnexion</a>
-		{% else %}
+        {% else %}
             <a class="navbar-brand" href="/">Se connecter</a>
         {% endif %}
     </span>

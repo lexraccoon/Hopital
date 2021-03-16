@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
+    <title>Application Hôpital</title>
+</head>
+<style>
+    .modal-body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+{% block body %}
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Vous avez fermé votre onglet sans vous déconnecter</h4>
+                <a class="navbar-brand" href="/logout">Déconnexion</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $('#exampleModal').modal('toggle')
+    });
+</script>
+{% endblock %}

@@ -1,250 +1,263 @@
-<!DOCTYPE html>
-<html lang="eng">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-    <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
-    <title>Application Hôpital</title>
-</head>
-<body>
+{% if gradeUser == 'Administrateur' or gradeUser == 'Secretaire'%}
+    <!DOCTYPE html>
+    <html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
+        <title>Application Hôpital</title>
+    </head>
+    <body>
 
-<style>
-    body{
+    <style>
+        body{
 
-        background-color: var(--grey);
-        overflow-x: hidden;
-    }
-    :root{
-        --grey:#E0E1DD;
-        --dark_blue:#1B263B;
-        --light_blue:#778dae;
-    }
-    .image{
-        height:10vw;
-        width:100vw;
-        background-size:cover;
-        background: url("https://d1zah1nkiby91r.cloudfront.net/s3fs-public/akhs-tanzania-dar_0038_abdul_mohamed-pixelbase_01-2019_r.jpg") 0 -700px fixed;
-    }
-    .contain{
-        margin-top:2vw;
-        display:flex;
-        width:70vw;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center;
-        flex-direction: column;
-    }
-    /* -----TOP----- */
-    .top_contain{
-        display: flex;
-        justify-content: space-between;
-        width:100%;
-    }
-    .top_left{
-        font-size: 30px;
-    }
-    .top_right{
-        font-size: 20px;
-        display: flex;
-        flex-direction: row;
-    }
-    .search{
-        margin-top:1vh;
-        display: flex;
-        flex-direction: column;
-        width:25vw;
-        align-items: center;
-        height: auto;
-    }
-    .rowSearch{
-        display: flex;
-        flex-direction: row;
-    }
-    .submit{
-        margin-top: 1vw;
-    }
-    .modalsearch{
-        height:50%;
-    }
-    /* -----PATIENT----- */
-    .list_patients{
-        margin-top:2vw;
-        display: flex;
-        flex-direction: column;
-    }
-    .patient{
-        background-color:white;
-        height:auto;
-        width:50vw;
-        min-width: 900px;
-        border-radius: 5px;
-        display: flex;
-        justify-content: space-around;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .patient_infos{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        margin-right: 5vw;
-    }
-    .patientInfos{
-        display: flex;
-        flex-direction: row;
-    }
-    .patientInfosSecu{
-        display: flex;
-        flex-direction: column;
-    }
-    .roomNumber{
-        margin-left:0;
-    }
-    .split{
-        height:15vh;
-        width:0;
-        border-left: 1px solid black;
-        margin-right: 1vw;
-    }
-</style>
-{% include 'template/header.html.twig' %}
-<div class="image"></div>
-<div class="contain">
-    <div class="top_contain">
-        <span class="top_left">
-            <p>Liste des Patients</p>
-                {% if gradeUser == 'Administrateur' or gradeUser == 'Secretaire' %}
-                    <a href="/ajouterPatients"><input type="button" value="Ajouter un patient" class="btn btn-primary"></a>
-                {% endif %}
-        </span>
-        <span class="top_right">
-
-
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary modalsearch" data-toggle="modal" data-target="#exampleModal">
-                Rechercher un patient
-            </button>
-                        <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Rechercher un patient</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-
-                            {{ form_start(form) }}
-
-                            <div class="search">
-                                <div class="rowSearch">
-                                    {{ form_widget(form.NomPatient) }}
-                                    {{ form_widget(form.PrenomPatient) }}
-                                </div>
-                                <div class="rowSearch">
-                                    {{ form_widget(form.NumeroDeSecu) }}
-                                    {{ form_widget(form.DateDeNaissance) }}
-                                </div>
-
-                            {{ form_end(form) }}
-                                <input type="submit" class="btn btn-primary submit" value="Rechercher ">
+            background-color: var(--grey);
+            overflow-x: hidden;
+        }
+        :root{
+            --grey:#E0E1DD;
+            --dark_blue:#1B263B;
+            --light_blue:#778dae;
+        }
+        .image{
+            height:10vw;
+            width:100vw;
+            background-size:cover;
+            background: url("https://d1zah1nkiby91r.cloudfront.net/s3fs-public/akhs-tanzania-dar_0038_abdul_mohamed-pixelbase_01-2019_r.jpg") 0 -700px fixed;
+        }
+        .contain{
+            margin-top:2vw;
+            display:flex;
+            width:70vw;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            flex-direction: column;
+        }
+        /* -----TOP----- */
+        .top_contain{
+            display: flex;
+            justify-content: space-between;
+            width:100%;
+        }
+        .top_left{
+            font-size: 30px;
+        }
+        .top_right{
+            font-size: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+        .search{
+            margin-top:1vh;
+            display: flex;
+            flex-direction: column;
+            width:25vw;
+            align-items: center;
+            height: auto;
+        }
+        .rowSearch{
+            display: flex;
+            flex-direction: row;
+        }
+        .submit{
+            margin-top: 1vw;
+        }
+        .modalsearch{
+            height:50%;
+        }
+        /* -----PATIENT----- */
+        .list_patients{
+            margin-top:2vw;
+            display: flex;
+            flex-direction: column;
+        }
+        .patient{
+            background-color:white;
+            height:auto;
+            width:50vw;
+            min-width: 900px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-around;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .patient_infos{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            margin-right: 5vw;
+        }
+        .patientInfos{
+            display: flex;
+            flex-direction: row;
+        }
+        .patientInfosSecu{
+            display: flex;
+            flex-direction: column;
+        }
+        .roomNumber{
+            margin-left:0;
+        }
+        .split{
+            height:15vh;
+            width:0;
+            border-left: 1px solid black;
+            margin-right: 1vw;
+        }
+        .modal-footer{
+            display: flex;
+            justify-content: space-between;
+        }
+        .msg {
+            color: #B0413E;
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+        }''
+    </style>
+    {% include 'template/header.html.twig' %}
+    <div class="image"></div>
+    <div class="contain">
+        <div class="top_contain">
+            <span class="top_left">
+                <p>Liste des Patients</p>
+                    {% if gradeUser == 'Administrateur' or gradeUser == 'Secretaire' %}
+                        <a href="/ajouterPatients"><input type="button" value="Ajouter un patient" class="btn btn-primary"></a>
+                    {% endif %}
+            </span>
+            <span class="top_right">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary modalsearch" data-toggle="modal" data-target="#exampleModal">
+                    Rechercher un patient
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Rechercher un patient</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div class="modal-body">
 
+                                {{ form_start(form) }}
+
+                                <div class="search">
+                                    <div class="rowSearch">
+                                        {{ form_widget(form.NomPatient) }}
+                                        {{ form_widget(form.PrenomPatient) }}
+                                    </div>
+                                    <div class="rowSearch">
+                                        {{ form_widget(form.NumeroDeSecu) }}
+                                        {{ form_widget(form.DateDeNaissance) }}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary submit"  value="Rechercher ">
+                            </div>
+                            {{ form_end(form) }}
                         </div>
                     </div>
                 </div>
-            </div>
-        </span>
-    </div>
-    <div class="list_patients">
-        {% if patients %}
-        {% for patient in patients %}
+            </span>
+        </div>
+        <div class="list_patients">
+            {% if patients %}
+            {% for patient in patients %}
+                <div class="patient shadow p-3 mb-5 bg-white rounded">
+                    <div class="patient_left patient_infos">
+                        <div class="patientInfos">
+                            <span class="preLastName">Nom:</span>
+                            <p class="lastName">{{ patient.NomPatient }}</p>
+                        </div>
+                        <div class="patientInfos">
+                            <span class="preFirstName">Prenom:</span>
+                            <p class="firstName">{{ patient.PrenomPatient }}</p>
+                        </div>
+                    </div>
+                    <div class="split"></div>
+                    <div class="patient_center patient_infos">
+                        <div class="patientInfos">
+                            <span class="preAge">Age:</span>
+                            <p class="age">{{ ('now'|date('Y') - patient.DateDeNaissance|date('Y')) }} ans</p>
+                        </div>
+                        <div class="patientInfosSecu">
+                            <span class="preRoomNumber">Numéro de Sécurité sociale:</span>
+                            <p class="roomNumber">{{ patient.NumeroDeSecu }}</p>
+                        </div>
+                    </div>
+                    <div class="split"></div>
+                    <div class="patient_right patient_infos">
+                        {% if gradeUser == 'Administrateur' or gradeUser == 'Secretaire' %}
+                            <div class="managePatient">
+                                <a href="/modifierPatients/{{ patient.id }}"><input type="button" class="manageButton btn btn-primary" value="Modifier le patient"></a>
+                            </div>
+                        {% endif %}
+                        <div class="managePatient">
+                            <a href="/listeSejourPatients/{{ patient.id }}"><input type="button" class="manageButton btn btn-primary" value="Voir les séjours"></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% elseif foo == "True" and patients != "Null" %}
+                <p class="msg">Erreur : Votre patient n'existe pas</p>
+            {% else %}
+            {% for query in queries %}
             <div class="patient shadow p-3 mb-5 bg-white rounded">
                 <div class="patient_left patient_infos">
                     <div class="patientInfos">
                         <span class="preLastName">Nom:</span>
-                        <p class="lastName">{{ patient.NomPatient }}</p>
+                        <p class="lastName">{{ query.NomPatient }}</p>
                     </div>
                     <div class="patientInfos">
                         <span class="preFirstName">Prenom:</span>
-                        <p class="firstName">{{ patient.PrenomPatient }}</p>
+                        <p class="firstName">{{ query.PrenomPatient }}</p>
                     </div>
                 </div>
                 <div class="split"></div>
                 <div class="patient_center patient_infos">
                     <div class="patientInfos">
                         <span class="preAge">Age:</span>
-                        <p class="age">{{ ('now'|date('Y') - patient.DateDeNaissance|date('Y')) }} ans</p>
+                        <p class="age">{{ ('now'|date('Y') - query.DateDeNaissance|date('Y')) }} ans</p>
                     </div>
                     <div class="patientInfosSecu">
                         <span class="preRoomNumber">Numéro de Sécurité sociale:</span>
-                        <p class="roomNumber">{{ patient.NumeroDeSecu }}</p>
+                        <p class="roomNumber">{{ query.NumeroDeSecu }}</p>
                     </div>
                 </div>
                 <div class="split"></div>
                 <div class="patient_right patient_infos">
                     {% if gradeUser == 'Administrateur' or gradeUser == 'Secretaire' %}
                         <div class="managePatient">
-                            <a href="/modifierPatients/{{ patient.id }}"><input type="button" class="manageButton btn btn-primary" value="Modifier le patient"></a>
+                            <a href="/modifierPatients/{{ query.id }}"><input type="button" class="manageButton btn btn-primary" value="Modifier le patient"></a>
                         </div>
                     {% endif %}
                     <div class="managePatient">
-                        <a href="/listeSejourPatients/{{ patient.id }}"><input type="button" class="manageButton btn btn-primary" value="Voir les séjours"></a>
+                        <a href="/listeSejourPatients/{{ query.id }}"><input type="button" class="manageButton btn btn-primary" value="Voir les séjours"></a>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-        {% else %}
-        {% for query in queries %}
-        <div class="patient shadow p-3 mb-5 bg-white rounded">
-            <div class="patient_left patient_infos">
-                <div class="patientInfos">
-                    <span class="preLastName">Nom:</span>
-                    <p class="lastName">{{ query.NomPatient }}</p>
-                </div>
-                <div class="patientInfos">
-                    <span class="preFirstName">Prenom:</span>
-                    <p class="firstName">{{ query.PrenomPatient }}</p>
-                </div>
-            </div>
-            <div class="split"></div>
-            <div class="patient_center patient_infos">
-                <div class="patientInfos">
-                    <span class="preAge">Age:</span>
-                    <p class="age">{{ ('now'|date('Y') - query.DateDeNaissance|date('Y')) }} ans</p>
-                </div>
-                <div class="patientInfosSecu">
-                    <span class="preRoomNumber">Numéro de Sécurité sociale:</span>
-                    <p class="roomNumber">{{ query.NumeroDeSecu }}</p>
-                </div>
-            </div>
-            <div class="split"></div>
-            <div class="patient_right patient_infos">
-                {% if gradeUser == 'Administrateur' or gradeUser == 'Secretaire' %}
-                    <div class="managePatient">
-                        <a href="/modifierPatients/{{ query.id }}"><input type="button" class="manageButton btn btn-primary" value="Modifier le patient"></a>
-                    </div>
-                {% endif %}
-                <div class="managePatient">
-                    <a href="/listeSejourPatients/{{ query.id }}"><input type="button" class="manageButton btn btn-primary" value="Voir les séjours"></a>
-                </div>
-            </div>
+            {% endfor %}
+            {% endif %}
         </div>
-        {% endfor %}
-        {% endif %}
     </div>
-</div>
-</body>
-</html>
-
+    </body>
+    </html>
+{% elseif gradeUser == 'Patient' %}
+    <script>window.location.href = "/listeRdv"</script>
+{% else %}
+    <script>window.location.href = "/welcome"</script>
+{% endif %}
 

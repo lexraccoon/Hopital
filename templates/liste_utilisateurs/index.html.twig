@@ -1,111 +1,119 @@
-<!DOCTYPE html>
-<html lang="eng">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
-        <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
-        <title>Application Hôpital</title>
-    </head>
-    <body>
-        <style>
-            body{
+{% if gradeUser == 'Administrateur'%}
+    <!DOCTYPE html>
+    <html lang="eng">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+            <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
+            <title>Application Hôpital</title>
+        </head>
+        <body>
+            <style>
+                body{
 
-                background-color: var(--grey);
-                overflow-x: hidden;
-            }
-            :root{
-                --grey:#E0E1DD;
-                --dark_blue:#1B263B;
-                --light_blue:#778dae;
-            }
-            .image{
-                height:10vw;
-                width:100vw;
-                background-size:cover;
-                background: url("https://d1zah1nkiby91r.cloudfront.net/s3fs-public/akhs-tanzania-dar_0038_abdul_mohamed-pixelbase_01-2019_r.jpg") 0 -700px fixed;
-            }
-            .contain{
-                margin-top:2vw;
-                display:flex;
-                width:70vw;
-                margin-left: auto;
-                margin-right: auto;
-                justify-content: center;
-                flex-direction: column;
-            }
-            /* -----TOP----- */
-            .top_contain{
-                display: flex;
-                justify-content: space-between;
-                width:100%;
-            }
-            .top_left{
-                font-size: 30px;
-            }
-            /* -----PATIENT----- */
-            .list_users{
-                margin-top:2vw;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
+                    background-color: var(--grey);
+                    overflow-x: hidden;
+                }
+                :root{
+                    --grey:#E0E1DD;
+                    --dark_blue:#1B263B;
+                    --light_blue:#778dae;
+                }
+                .image{
+                    height:10vw;
+                    width:100vw;
+                    background-size:cover;
+                    background: url("https://d1zah1nkiby91r.cloudfront.net/s3fs-public/akhs-tanzania-dar_0038_abdul_mohamed-pixelbase_01-2019_r.jpg") 0 -700px fixed;
+                }
+                .contain{
+                    margin-top:2vw;
+                    display:flex;
+                    width:70vw;
+                    margin-left: auto;
+                    margin-right: auto;
+                    justify-content: center;
+                    flex-direction: column;
+                }
+                /* -----TOP----- */
+                .top_contain{
+                    display: flex;
+                    justify-content: space-between;
+                    width:100%;
+                }
+                .top_left{
+                    font-size: 30px;
+                }
+                /* -----PATIENT----- */
+                .list_users{
+                    margin-top:2vw;
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
 
-            }
-            .users{
-                background-color:white;
-                height:auto;
-                width:20vw;
-                min-width: 200px;
-                border-radius: 5px;
-                display: flex;
-                justify-content: space-around;
-                margin-left: auto;
-                margin-right: auto;
-                flex-direction: row;
-            }
-            .userInfos{
-                display: flex;
-                flex-direction: row;
-            }
+                }
+                .users{
+                    background-color:white;
+                    height:auto;
+                    width:20vw;
+                    min-width: 200px;
+                    border-radius: 5px;
+                    display: flex;
+                    justify-content: space-around;
+                    margin-left: auto;
+                    margin-right: auto;
+                    flex-direction: row;
+                }
+                .userInfos{
+                    display: flex;
+                    flex-direction: row;
+                }
 
-            .userLeft{
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            }
-        </style>
-        {% include 'template/header.html.twig' %}
-        <div class="image"></div>
-        <div class="contain">
-            <div class="top_contain">
-                <span class="top_left">
-                    <p>Liste des utilisateurs</p>
-                    <a href="/ajouterUtilisateurs"><input type="button" value="Ajouter un utilisateur" class="btn btn-primary"></a>
-                </span>
-            </div>
-            <div class="list_users">
-                {% for query in queries %}
-                    <div class="users shadow p-3 mb-5 bg-white rounded">
-                        <div class="userLeft">
-                            <div class="userInfos">
-                                <span class="preLastName">Nom:</span>
-                                <p class="lastName">{{ query.NomUtilisateur }}</p>
-                            </div>
-                            <div class="userInfos">
-                                <span class="preFirstName">Prenom:</span>
-                                <p class="FirstName">{{ query.PrenomUtilisateur }}</p>
-                            </div>
-                            <div class="userInfos">
-                                <span class="preRole">Role:</span>
-                                <p class="role">{{ query.Grade }}</p>
+                .userLeft{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+            </style>
+            {% include 'template/header.html.twig' %}
+            <div class="image"></div>
+            <div class="contain">
+                <div class="top_contain">
+                    <span class="top_left">
+                        <p>Liste des utilisateurs</p>
+                        <a href="/ajouterUtilisateurs"><input type="button" value="Ajouter un utilisateur" class="btn btn-primary"></a>
+                    </span>
+                </div>
+                <div class="list_users">
+                    {% for query in queries %}
+                        <div class="users shadow p-3 mb-5 bg-white rounded">
+                            <div class="userLeft">
+                                <div class="userInfos">
+                                    <span class="preLastName">Nom:</span>
+                                    <p class="lastName">{{ query.NomUtilisateur }}</p>
+                                </div>
+                                <div class="userInfos">
+                                    <span class="preFirstName">Prenom:</span>
+                                    <p class="FirstName">{{ query.PrenomUtilisateur }}</p>
+                                </div>
+                                <div class="userInfos">
+                                    <span class="preRole">Role:</span>
+                                    <p class="role">{{ query.Grade }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-    </body>
-</html>
+        </body>
+    </html>
+{% elseif gradeUser == "Secretaire" %}
+    <script>window.location.href = "/listePatients"</script>
+{% elseif gradeUser == 'Patient' %}
+    <script>window.location.href = "/listeRdv"</script>
+{% else %}
+    <script>window.location.href = "/welcome"</script>
+{% endif %}
 
 

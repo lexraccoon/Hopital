@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
+    <title>Application Hôpital</title>
+</head>
+<body>
+<style>
+    body{
+        overflow: hidden;
+    }
+    :root{
+        --grey:#E0E1DD;
+        --dark_blue:#1B263B;
+        --light_blue:#778dae;
+    }
+    .fond{
+        background-image: url("https://lvdneng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2020/04/24/node_764090/47356788/public/2020/04/24/B9723299169Z.1_20200424155740_000%2BG8GFU2BTF.1-0.jpg?itok=x1DwPsea1591893613");
+        height:95vh;
+        width:100vw;
+        background-attachment:fixed;
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
+    .fond-color{
+        background-color: rgba(255,255,255,0.8);
+        height:100%;
+    }
+    /*connexion Formulaire */
+    .login_contain{
+        display:flex;
+        height:90vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .login-wrapper{
+        display:flex;
+        flex-direction: column;
+        background-color: var(--light_blue);
+        padding:1vw;
+        border-radius: 5px;
+    }
+    .form_login{
+        display:flex;
+        flex-direction: column;
+        width: 15vw;
+        height: auto;
+        margin: auto;
+    }
+    .submit {
+        margin: auto;
+    }
+    .alert{
+        margin-bottom: 0!important;
+    }
+</style>
+{% include 'template/header.html.twig' %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <div class="fond">
+        <div class="fond-color">
+            <div class="login_contain">
+                <div class="login-wrapper">
+                    <h1>Connexion Personnel</h1>
+                    <div class="form-group">
+                        <div class="form_login">
+                            <label for="inputUsername">
+                                Identifiant :
+                                <input id="inputUsername" name="username" type="text" class="form-control" required autofocus>
+                            </label>
+                            <label for="inputPassword">
+                                Mot de passe :
+                                <input name="password" id="inputPassword" type="password" class="form-control" required>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="submit">
+                        <input type="submit" value="Se connecter" class="btn btn-primary">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"/>
+</form>
+</body>

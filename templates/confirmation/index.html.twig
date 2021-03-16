@@ -1,0 +1,79 @@
+{% if gradeUser == "Secretaire "%}
+    <!DOCTYPE html>
+    <html lang="eng">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
+    <title>Application Hôpital</title>
+    </head>
+
+    {% block body %}
+    <style>
+        body{
+
+            background-color: var(--grey);
+            overflow-x: hidden;
+        }
+        :root{
+            --grey:#E0E1DD;
+            --dark_blue:#1B263B;
+            --light_blue:#778dae;
+        }
+        .image{
+            height:10vw;
+            width:100vw;
+            background-size:cover;
+            background: url("https://d1zah1nkiby91r.cloudfront.net/s3fs-public/akhs-tanzania-dar_0038_abdul_mohamed-pixelbase_01-2019_r.jpg") 0 -700px fixed;
+        }
+        .contain{
+            margin-top:2vw;
+            display:flex;
+            width:70vw;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .back{
+            margin-top:1vw;
+            margin-left:1vw;
+            font-size: 20px;
+
+        }
+        /* -----TOP----- */
+        .top_contain{
+            display: flex;
+            justify-content: space-around;
+            width:100%;
+        }
+        .top_left{
+            display:flex;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 30px;
+            text-align: center;
+        }
+
+    </style>
+    {% include 'template/header.html.twig' %}
+        <div class="image"></div>
+        <div class="contain">
+            <div class="top_contain">
+                <span class="top_left">
+                    <p>Liste des rendez-vous à valider</p>
+                    <h4>Rendez-vous {{ etatRdv|lower }}</h4>
+                    <a href="/listeRdv"><input type="button" class="buttonBack btn btn-dark" value="Retour"></a>
+                </span>
+            </div>
+        </div>
+    {% endblock %}
+{% elseif gradeUser == 'Administrateur' %}
+    <script>window.location.href = "/listePatients"</script>
+{% elseif gradeUser == 'Patient' %}
+    <script>window.location.href = "/listeRdv"</script>
+{% else %}
+    <script>window.location.href = "/welcome"</script>
+{% endif %}

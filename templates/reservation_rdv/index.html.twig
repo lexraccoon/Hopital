@@ -1,0 +1,94 @@
+{% if gradeUser == 'Patient' %}
+    <!DOCTYPE html>
+    <html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="../style_calendar.css" rel="stylesheet"/>
+        <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="../script_calendar.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title>Application Hôpital</title>
+    </head>
+    {% block body %}
+    {% include 'template/header.html.twig' %}
+    <body>
+    <div class="image"></div>
+    <div class="contain">
+        <div class="top_contain">
+        <span class="top_left">
+            <a href="/prendreRdv"><input type="button" class="buttonBack btn btn-dark" value="Retour"></a>
+        </span>
+            <span class="top_middle">
+            <p>Prendre un rendez-vous</p>
+        </span>
+            <span class="top_right">
+            <p></p>
+        </span>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Votre Rendez-Vous</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="infosRdv">
+                        <div id="date">
+                        </div>
+                        <div id="hour">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary submit" value="Valider" data-dismiss="modal" onclick="datasRdv()">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="calendarContain">
+        <div class="titleCalendar">
+            <p id="title"></p>
+        </div>
+        <div class="calendar table-responsive">
+            <table class="table-striped table-hover">
+
+                <thead id="containHead">
+
+                </thead>
+                <tbody id="containBody">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="buttonsCalendar">
+            <input type="button" class="btn btn-primary" value="Précedente" id="precedente" />
+            <input type="button" class="btn btn-primary" value="Suivante" id="suivante" />
+        </div>
+
+    </div>
+    </body>
+
+    {% endblock %}
+
+{% elseif gradeUser == 'Secretaire' %}
+    <script>window.location.href = "/listeRdv"</script>
+{% elseif gradeUser == 'Administrateur' %}
+    <script>window.location.href = "/listePatients"</script>
+{% else %}
+    <script>window.location.href = "/welcome"</script>
+{% endif %}

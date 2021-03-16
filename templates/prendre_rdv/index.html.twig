@@ -1,0 +1,158 @@
+{% if gradeUser == 'Patient' %}
+    <!DOCTYPE html>
+    <html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="style_prendre_rdv.css" rel="stylesheet"/>
+        <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <title>Application Hôpital</title>
+    </head>
+
+    {% block body %}
+        {% include 'template/header.html.twig' %}
+
+            <div class="image"></div>
+            <div class="contain">
+                <div class="top_contain">
+                    <span class="top">
+                        <p></p>
+                    </span>
+                    <span class="top">
+                        <p></p>
+                    </span>
+                    <span class="top_left">
+                            <p>Liste des Médecins</p>
+                    </span>
+                    <span class="top_right">
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary modalsearch" data-toggle="modal" data-target="#exampleModal">
+                            Rechercher un médecin
+                        </button>
+                            <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Rechercher un médecin</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        {{ form_start(form) }}
+
+                                        <div class="search">
+                                            <div class="rowSearch">
+                                                {{ form_label(form.NomMedecin) }}
+                                                {{ form_widget(form.NomMedecin) }}
+                                                {{ form_label(form.PrenomMedecin) }}
+                                                {{ form_widget(form.PrenomMedecin) }}
+                                                {{ form_label(form.SpecialiteMedecin) }}
+                                                {{ form_widget(form.SpecialiteMedecin) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-primary submit" value="Rechercher">
+                                    </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+            </div>
+
+            {% if medecins %}
+                {% for medecin in medecins %}
+                    <div class="list_medecins">
+                        <div class="medecins shadow mb-5 bg-white rounded">
+                            <div class="medecinsContain">
+                                <div class="medecinsContent">
+                                    <div class="medecinsLeft">
+                                        <div class="medecinsLeftTop">
+                                            <img class="img" src="docteur.jpg" alt="medecin">
+                                        </div>
+
+                                        <div class="medecinsLeftBottom">
+                                            <div class="medecinsInfos">
+                                                <span class="preDateEntree">Prénom : </span>
+                                                <p class="dateEntree"> &nbsp {{ medecin.PrenomMedecin }}</p>
+                                            </div>
+                                            <div class="medecinsInfos">
+                                                <span class="preDateEntree">Nom : </span>
+                                                <p class="dateEntree">&nbsp {{ medecin.NomMedecin }}</p>
+                                            </div>
+                                            <div class="medecinsInfos">
+                                                <span class="preDateSortie">Spécialité : </span>
+                                                <p class="dateSortie">&nbsp {{ medecin.SpecialiteMedecin }}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="split"></div>
+                                    <div class="medecinsRight">
+                                        <a href="/reservationRdv/{{ medecin.id }}"><input type="button" class="buttonBack btn btn-dark" value="Prendre rendez-vous"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% elseif foo == "True" and medecins != "Null" %}
+                <p class="msg">Erreur : Le médecin que vous recherchez n'existe pas</p>
+            {% else %}
+                {% for query in queries %}
+                    <div class="list_medecins">
+                        <div class="medecins shadow mb-5 bg-white rounded">
+                            <div class="medecinsContain">
+                                <div class="medecinsContent">
+                                    <div class="medecinsLeft">
+                                        <div class="medecinsLeftTop">
+                                            <img class="img" src="docteur.jpg" alt="medecin">
+                                        </div>
+
+                                        <div class="medecinsLeftBottom">
+                                            <div class="medecinsInfos">
+                                                <span class="preDateEntree">Prénom : </span>
+                                                <p class="dateEntree"> &nbsp {{ query.PrenomMedecin }}</p>
+                                            </div>
+                                            <div class="medecinsInfos">
+                                                <span class="preDateEntree">Nom : </span>
+                                                <p class="dateEntree">&nbsp {{ query.NomMedecin }}</p>
+                                            </div>
+                                            <div class="medecinsInfos">
+                                                <span class="preDateSortie">Spécialité : </span>
+                                                <p class="dateSortie">&nbsp {{ query.SpecialiteMedecin }}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="split"></div>
+                                    <div class="medecinsRight">
+                                        <a href="/reservationRdv/{{ query.id }}"><input type="button" class="buttonBack btn btn-dark" value="Prendre rendez-vous"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+    {% endblock %}
+
+{% elseif gradeUser == 'Secretaire' %}
+    <script>window.location.href = "/listeRdv"</script>
+{% elseif gradeUser == 'Administrateur' %}
+    <script>window.location.href = "/listePatients"</script>
+{% else %}
+    <script>window.location.href = "/welcome"</script>
+{% endif %}

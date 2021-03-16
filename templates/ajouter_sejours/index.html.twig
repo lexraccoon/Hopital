@@ -1,128 +1,133 @@
-<!DOCTYPE html>
-<html lang="eng">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
-    <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
-    <title>Application Hôpital</title>
-</head>
-<body>
-<style>
-    body{
+{% if gradeUser == 'Administrateur' or gradeUser == "Secretaire "%}
+    <!DOCTYPE html>
+    <html lang="eng">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+        <link rel="icon" href="https://media.discordapp.net/attachments/664429554038997015/788915679713034320/logo.png" />
+        <title>Application Hôpital</title>
+    </head>
+    <body>
+    <style>
+        body{
 
-        background-color: var(--grey);
-        overflow-x: hidden;
-    }
-    :root{
-        --grey:#E0E1DD;
-        --dark_blue: #1b263b;
-        --light_blue:#778dae;
-    }
-    .btn{
-        margin-left:0.5vw;
-    }
-    .image{
-        height:10vw;
-        width:100vw;
-        background-size:cover;
-        background: url("https://d1zah1nkiby91r.cloudfront.net/s3fs-public/akhs-tanzania-dar_0038_abdul_mohamed-pixelbase_01-2019_r.jpg") 0 -700px fixed;
-    }
-    .contain{
-        margin-top:2vw;
-        display:flex;
-        width:70vw;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center;
-        flex-direction: column;
-    }
-    /* -----TOP----- */
-    .top_contain{
-        display: flex;
-        justify-content: center;
-        width:100%;
-    }
-    .top_Center{
-        font-size: 30px;
-    }
-    /* -----PATIENT----- */
-    .managePatient{
-        margin-top:2vw;
-        display: flex;
-        flex-direction: row;
-        background-color: white;
-        justify-content: space-around;
-        height: auto;
-        width:40vw;
-        min-width: 600px;
-        margin-left:auto;
-        margin-right: auto;
-        border-radius: 5px;
-    }
-    .patient_infos{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-    .sejourInfos{
-        display: flex;
-        flex-direction: column;
-    }
-    .manageButtons{
-        display: flex;
-        justify-content: center;
-        transform:scale(0.9);
-    }
-    .back{
-        margin-top:1vw;
-        margin-left:1vw;
-        font-size: 20px;
+            background-color: var(--grey);
+            overflow-x: hidden;
+        }
+        :root{
+            --grey:#E0E1DD;
+            --dark_blue: #1b263b;
+            --light_blue:#778dae;
+        }
+        .btn{
+            margin-left:0.5vw;
+        }
+        .image{
+            height:10vw;
+            width:100vw;
+            background-size:cover;
+            background: url("https://d1zah1nkiby91r.cloudfront.net/s3fs-public/akhs-tanzania-dar_0038_abdul_mohamed-pixelbase_01-2019_r.jpg") 0 -700px fixed;
+        }
+        .contain{
+            margin-top:2vw;
+            display:flex;
+            width:70vw;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            flex-direction: column;
+        }
+        /* -----TOP----- */
+        .top_contain{
+            display: flex;
+            justify-content: center;
+            width:100%;
+        }
+        .top_Center{
+            font-size: 30px;
+        }
+        /* -----PATIENT----- */
+        .managePatient{
+            margin-top:2vw;
+            display: flex;
+            flex-direction: row;
+            background-color: white;
+            justify-content: space-around;
+            height: auto;
+            width:40vw;
+            min-width: 600px;
+            margin-left:auto;
+            margin-right: auto;
+            border-radius: 5px;
+        }
+        .patient_infos{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .sejourInfos{
+            display: flex;
+            flex-direction: column;
+        }
+        .manageButtons{
+            display: flex;
+            justify-content: center;
+            transform:scale(0.9);
+        }
+        .back{
+            margin-top:1vw;
+            margin-left:1vw;
+            font-size: 20px;
 
-    }
-    .split{
-        height:16vh;
-        width:0;
-        border-left: 1px solid black;
-        margin-right: 1vw;
-    }
-</style>
-{% include 'template/header.html.twig' %}
-<div class="image"></div>
-<div class="back">
-    <a href="/listeSejourPatients/{{ id }}"><input type="button" class="buttonBack btn btn-dark" value="Retour"></a>
-</div>
-<div class="contain">
-    <div class="top_contain">
-        <span class="top_Center">Ajouter un séjour</span>
+        }
+        .split{
+            height:16vh;
+            width:0;
+            border-left: 1px solid black;
+            margin-right: 1vw;
+        }
+    </style>
+    {% include 'template/header.html.twig' %}
+    <div class="image"></div>
+    <div class="back">
+        <a href="/listeSejourPatients/{{ id }}"><input type="button" class="buttonBack btn btn-dark" value="Retour"></a>
     </div>
-    <div class="managePatient shadow p-3 mb-5 bg-white rounded">
-        <div class="managePatient_Letf patient_infos">
-            <div class="sejourInfos">
-                {{ form_start(form) }}
-                    {{ form_label(form.NomService) }}
-                    {{ form_widget(form.NomService) }}
+    <div class="contain">
+        <div class="top_contain">
+            <span class="top_Center">Ajouter un séjour</span>
+        </div>
+        <div class="managePatient shadow p-3 mb-5 bg-white rounded">
+            <div class="managePatient_Letf patient_infos">
+                <div class="sejourInfos">
+                    {{ form_start(form) }}
+                        {{ form_label(form.NomService) }}
+                        {{ form_widget(form.NomService) }}
+                </div>
+            </div>
+            <div class="split"></div>
+            <div class="managePatient_Right patient_infos">
+                <div class="sejourInfos">
+                        {{ form_label(form.DateEntree) }}
+                        {{ form_widget(form.DateEntree) }}
+                </div>
+                <div class="sejourInfos">
+                        {{ form_label(form.DateSortie) }}
+                        {{ form_widget(form.DateSortie) }}
+                </div>
             </div>
         </div>
-        <div class="split"></div>
-        <div class="managePatient_Right patient_infos">
-            <div class="sejourInfos">
-                    {{ form_label(form.DateEntree) }}
-                    {{ form_widget(form.DateEntree) }}
-            </div>
-            <div class="sejourInfos">
-                    {{ form_label(form.DateSortie) }}
-                    {{ form_widget(form.DateSortie) }}
-            </div>
+        <div class="manageButtons">
+            {{ form_row(form.submit) }}
         </div>
     </div>
-    <div class="manageButtons">
-        {{ form_row(form.submit) }}
-    </div>
-</div>
-{{ form_end(form) }}
-</body>
-</html>
-
+    {{ form_end(form) }}
+    </body>
+    </html>
+{% elseif gradeUser == 'Patient' %}
+    <script>window.location.href = "/listeRdv"</script>
+{% else %}
+    <script>window.location.href = "/welcome"</script>
+{% endif %}
 
