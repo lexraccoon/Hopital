@@ -2,11 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Lit;
 use App\Entity\SejourPatient;
-use App\Entity\Service;
 use App\Form\LitType;
-use App\Entity\Patient;
 use App\Form\AjouterSejourType;
 use App\Form\ServiceType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

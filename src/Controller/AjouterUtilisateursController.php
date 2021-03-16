@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Personnel;
+use App\Entity\Utilisateur;
 use App\Form\AjouterUtilisateurType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +18,7 @@ class AjouterUtilisateursController extends AbstractController
      */
     public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserInterface $user): Response
     {
-        $newUser = new Personnel();
+        $newUser = new Utilisateur();
         $form = $this->createForm(AjouterUtilisateurType::class, $newUser);
         $form->handleRequest($request);
 

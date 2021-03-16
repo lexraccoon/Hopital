@@ -17,6 +17,7 @@ class ListePatientsController extends AbstractController
      */
     public function index(UserInterface $user, Request $request): Response
     {
+        $foo = False;
 
         $patient = new Patient();
 
@@ -25,12 +26,17 @@ class ListePatientsController extends AbstractController
 
         $patientRecherche = [];
 
+        $queryPatients = $this->getDoctrine()
+            ->getRepository(Patient::class)
+            ->findAll();
+
         if($form->isSubmitted() && $form->isValid())
         {
+            $foo = True;
             $nomPatient = $patient->getNomPatient();
             $prenomPatient = $patient->getPrenomPatient();
-            $numeroSecu = $patient->getNumeroDeSecu();
-            $agePatient = $patient->getDateDeNaissance();
+
+
             if($nomPatient != "" && $prenomPatient != "")
             {
                 $patientRecherche = $this->getDoctrine()->getRepository(Patient::class)->findBy(['NomPatient' => $nomPatient, 'PrenomPatient' => $prenomPatient]);
@@ -43,14 +49,6 @@ class ListePatientsController extends AbstractController
             {
                 $patientRecherche = $this->getDoctrine()->getRepository(Patient::class)->findBy(['PrenomPatient' => $prenomPatient]);
             }
-            elseif($numeroSecu != "")
-            {
-                $patientRecherche = $this->getDoctrine()->getRepository(Patient::class)->findBy(['NumeroDeSecu' => $numeroSecu]);
-            }
-            elseif($numeroSecu != "")
-            {
-                $patientRecherche = $this->getDoctrine()->getRepository(Patient::class)->findBy(['DateDeNaissance' => $agePatient]);
-            }
             else
             {
                 $patientRecherche = $this->getDoctrine()->getRepository(Patient::class)->findAll();
@@ -58,15 +56,13 @@ class ListePatientsController extends AbstractController
         }
         else
         {
-            $queryPatients = $this->getDoctrine()
-                ->getRepository(Patient::class)
-                ->findAll();
             return $this->render('liste_patients/index.html.twig', [
                 'controller_name' => 'ListePatientsController',
                 'gradeUser' => $user->Grade,
                 'queries' => $queryPatients,
                 'form' => $form->createView(),
                 'patients' => $patientRecherche,
+                'foo' => $foo,
             ]);
         }
 
@@ -75,6 +71,7 @@ class ListePatientsController extends AbstractController
             'gradeUser' => $user->Grade,
             'form' => $form->createView(),
             'patients' => $patientRecherche,
+            'foo' => $foo,
         ]);
     }
 }

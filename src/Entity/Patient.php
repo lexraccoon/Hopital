@@ -39,6 +39,11 @@ class Patient
      */
     private $NumeroDeSecu;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $IdUtilisateur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +93,18 @@ class Patient
     public function setNumeroDeSecu(string $NumeroDeSecu): self
     {
         $this->NumeroDeSecu = $NumeroDeSecu;
+
+        return $this;
+    }
+
+    public function getIdUtilisateur(): ?int
+    {
+        return $this->IdUtilisateur;
+    }
+
+    public function setIdUtilisateur(int $IdUtilisateur): self
+    {
+        $this->IdUtilisateur = $IdUtilisateur;
 
         return $this;
     }

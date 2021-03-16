@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Personnel;
+use App\Entity\Utilisateur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +16,7 @@ class ListeUtilisateursController extends AbstractController
     public function index(UserInterface $user): Response
     {
         $queryPersonnel = $this->getDoctrine()
-            ->getRepository(Personnel::class)
+            ->getRepository(Utilisateur::class)
             ->findAll();
 
         return $this->render('liste_utilisateurs/index.html.twig', [
