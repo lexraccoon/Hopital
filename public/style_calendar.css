@@ -1,0 +1,111 @@
+table {
+    border-collapse:collapse;
+}
+td {
+    border: 1px solid #333333;
+    padding: 2px 5px 2px 5px;
+    text-align:center;
+}
+.titleTable{
+    border: 1px solid #333333;
+    padding: 2px 5px 2px 5px;
+    text-align:center;
+}
+.titre {
+    font-weight: bold;
+}
+.buttonBack{
+    position:relative;
+    margin-top:2vw;
+}
+body{
+
+    background-color: var(--grey) !important;
+    overflow-x: hidden;
+}
+:root{
+    --grey:#E0E1DD;
+    --dark_blue:#1B263B;
+    --light_blue:#778dae;
+}
+.image{
+    height:10vw;
+    width:100vw;
+    background-size:cover;
+    background: url("https://d1zah1nkiby91r.cloudfront.net/s3fs-public/akhs-tanzania-dar_0038_abdul_mohamed-pixelbase_01-2019_r.jpg") 0 -700px fixed;
+}
+.contain{
+    display:flex;
+    width:100vw;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    flex-direction: column;
+}
+.top_contain{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width:100%;
+}
+.top_middle{
+    margin-left:-100px;
+    font-size: 30px;
+}
+/* -----PATIENT----- */
+
+.split{
+    height:95%;
+    width:0;
+    border-left: 1px solid black;
+    margin-right: 1vw;
+}
+.img{
+    height:150px;
+    width:150px;
+}
+
+table{
+    width:50vw;
+    margin:auto;
+}
+tbody{
+    max-height: 50px;
+
+    overflow-y: scroll;
+}
+.calendar{
+    max-height: 500px;
+    overflow:auto;
+}
+
+.calendarContain{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:51vw;
+    height:65vh;
+    margin:auto;
+}
+.buttonsCalendar{
+    margin-top:2vw;
+    margin-bottom: 2vw;
+    display:flex;
+    justify-content: space-around;
+}
+.titleCalendar{
+    display: flex;
+    justify-content: space-around;
+}
+#title{
+    font-size:30px;
+}
+.infosRdv{
+    display:flex;
+    flex-direction: row;
+}
+.modal-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+}

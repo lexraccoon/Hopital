@@ -1,0 +1,129 @@
+body{
+
+    background-color: var(--grey);
+    overflow-x: hidden;
+}
+:root{
+    --grey:#E0E1DD;
+    --dark_blue:#1B263B;
+    --light_blue:#778dae;
+}
+.image{
+    height:10vw;
+    width:100vw;
+    background-size:cover;
+    background: url("https://d1zah1nkiby91r.cloudfront.net/s3fs-public/akhs-tanzania-dar_0038_abdul_mohamed-pixelbase_01-2019_r.jpg") 0 -700px fixed;
+}
+.contain{
+    margin-top:2vw;
+    display:flex;
+    width:70vw;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    flex-direction: column;
+}
+.top_contain{
+    display: flex;
+    justify-content: space-around;
+    width:100%;
+}
+.top_left{
+    font-size: 30px;
+}
+/* -----PATIENT----- */
+.list_rdvs{
+    margin-top:2vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+.rdvs{
+    background-color:white;
+    height:auto;
+    width:25vw;
+    min-width: 500px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+}
+.contain_add{
+    display: flex;
+    justify-content: center;
+}
+
+.rdvsContain{
+    display: flex;
+    flex-direction: column;
+    padding:0px;
+
+}
+.rvdsContent{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.rdvsTop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #2c5faa;
+    height:100%;
+    width:100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding:5px;
+    margin-bottom: 5px;
+
+}
+.rdvsBottom{
+    display: flex;
+    justify-content: center;
+    margin-top:1vw;
+}
+.rdvsInfos{
+
+    display: flex;
+    flex-direction: row;
+}
+
+.rdvsRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.rdvsLeft{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.split{
+    height:95%;
+    width:0;
+    border-left: 1px solid black;
+    margin-right: 1vw;
+}
+.img{
+    height:150px;
+    width:150px;
+}
+.noRdvs{
+    margin-left:auto;
+    margin-right:auto;
+    width:20%;
+    display:flex;
+
+    flex-direction: column;
+}
+.noRdvs a{
+    margin-left:auto;
+    margin-right:auto;
+}
+.noRdvs p{
+    margin-left:auto;
+    margin-right:auto;
+}
