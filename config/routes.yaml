@@ -1,10 +1,26 @@
-login:
+welcome:
     path: /
+    controller: App\Controller\WelcomeController::index
+
+login_personnel:
+    path: /login_personnel
     controller: App\Controller\LoginController::login
+
+login_patient:
+    path: /login_patient
+    controller: App\Controller\LoginPatientController::login
+
+registerPatient:
+    path: /registerPatient
+    controller: App\Controller\RegistrationPatientController::index
 
 app_logout:
     path: /logout
     methods: GET
+
+userNotLogout:
+    path: /userNotLogout
+    controller: App\Controller\UserNotLogoutController::index
 
 listePatients:
     path: /listePatients
@@ -41,3 +57,19 @@ modifierUtilisateur:
 ajouterUtilisateurs:
     path: /ajouterUtilisateurs
     controller: App\Controller\AjouterUtilisateursController::index
+
+prendreRdv:
+    path: /prendreRdv
+    controller: App\Controller\PrendreRdvController::index
+
+listeRdv:
+    path: /listeRdv
+    controller: App\Controller\ListeRdvController::index
+
+Confirmation:
+    path: /confirmation/{etatRdv}/{id}
+    controller: App\Controller\ConfirmationController::index
+
+reservationRdv:
+    path: /reservationRdv/{id}
+    controller: App\Controller\ReservationRdvController::index
