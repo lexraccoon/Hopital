@@ -1,16 +1,16 @@
 security:
     encoders:
-        App\Entity\Personnel:
+        App\Entity\Utilisateur:
             algorithm: bcrypt
-
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\Personnel
+                class: App\Entity\Utilisateur
                 property: username
+
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
@@ -25,6 +25,8 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginAuthenticator
+                    - App\Security\LoginPatientAuthenticator
+                entry_point: App\Security\LoginAuthenticator
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -38,5 +40,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }
